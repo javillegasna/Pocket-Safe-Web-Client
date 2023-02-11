@@ -1,0 +1,42 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  Ci-front:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        browser-type: [chrome, firefox, edge]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm i
+
+    - name: Run build
+      run: npm run build
+
+    - name: Run unit test
+      run: npm run test:ci
+
+    - name: Run e2e test Cypress
+      uses: cypress-io/github-action@v5.0.8
+      with:
+        install: false
+        build: npm run build
+        start: npm run start:dev
+        browser: ${{ matrix.browser-type }}
