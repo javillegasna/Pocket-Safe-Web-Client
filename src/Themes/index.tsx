@@ -1,13 +1,15 @@
 import { PaletteOptions, ThemeOptions, createTheme, ThemeProvider } from '@mui/material/styles';
-import { CssBaseline, StyledEngineProvider } from '@mui/material';
+import { CssBaseline, PaletteMode, StyledEngineProvider } from '@mui/material';
 
-import React, { useMemo } from 'react';
+import React, { useMemo} from 'react';
 
 import { Palette } from './colors/palette';
 import { Typography } from './fonts/typography';
+import ComponentsOverrides from './overides';
 
 interface IThemeCustomization {
   children: React.ReactNode;
+  themeMode: PaletteMode
 }
 
 const CustomShadows = (palette: PaletteOptions) => {
@@ -24,8 +26,8 @@ const CustomShadows = (palette: PaletteOptions) => {
   };
 };
 
-const ThemeCustomization = ({ children }: IThemeCustomization) => {
-  const palette = Palette('light');
+const ThemeCustomization = ({ children, themeMode }: IThemeCustomization) => {
+  const palette = Palette(themeMode);
   const typography = Typography(`'Public Sans', sans-serif`);
   const shadows = CustomShadows(palette);
   const themeOptions: ThemeOptions = useMemo<ThemeOptions>(
@@ -54,6 +56,7 @@ const ThemeCustomization = ({ children }: IThemeCustomization) => {
     [palette, typography, shadows]
   );
   const themes = createTheme(themeOptions);
+  themes.components = ComponentsOverrides(themes);
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={themes}>
