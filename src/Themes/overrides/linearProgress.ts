@@ -1,4 +1,4 @@
-export default function LinearProgress() {
+export default function linearProgress() {
   return {
     root: {
       height: 6,

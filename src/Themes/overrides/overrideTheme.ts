@@ -7,10 +7,10 @@ interface IOverrideThemeProps{
   elementKey:string,
   defaultProps?:{[index: string]:boolean|string}
 }
-export function OverrideTheme({elementKey, defaultProps}:IOverrideThemeProps){
-  return function (styleOverrides:any){
+export function OverrideTheme({elementKey, defaultProps={}}:IOverrideThemeProps){
+  return function (styleOverrides:any={}){
     const styledElement: {[index: string]:IStyleOverrides} = {}
-    styledElement[elementKey] = {
+    styledElement['Mui'+elementKey] = {
       defaultProps,
       styleOverrides
     }

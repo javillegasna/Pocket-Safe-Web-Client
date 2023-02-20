@@ -5,9 +5,18 @@ import ThemeCustomization from '../Themes';
 
 function App(): JSX.Element {
   const [themeMode, setThemeMode] = useState<PaletteMode>('light')
+    const colorMode = React.useMemo(
+      () => ({
+        toggleColorMode: () => {
+          setThemeMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+        },
+        currentColorMode: themeMode
+      }),
+      [themeMode],
+    );
   return (
     <ThemeCustomization themeMode={themeMode}>
-      <Layout>
+      <Layout colorMode={colorMode}>
         <h1>Body</h1>
       </Layout>
     </ThemeCustomization>

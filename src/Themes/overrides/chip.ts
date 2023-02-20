@@ -1,6 +1,6 @@
 import { Theme } from "@mui/material";
 
-export default function Chip(theme: Theme) {
+export default function chip(theme: Theme) {
   return {
     root: {
       borderRadius: 4,

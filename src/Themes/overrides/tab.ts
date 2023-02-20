@@ -1,6 +1,6 @@
 import { Theme } from "@mui/material";
 
-export default function Tab(theme :Theme) {
+export default function tab(theme :Theme) {
   return {
     root: {
       minHeight: 46,

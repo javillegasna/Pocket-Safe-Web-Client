@@ -5,7 +5,7 @@ import React, { useMemo} from 'react';
 
 import { Palette } from './colors/palette';
 import { Typography } from './fonts/typography';
-import ComponentsOverrides from './overides';
+import ComponentsOverrides from './overrides';
 
 interface IThemeCustomization {
   children: React.ReactNode;

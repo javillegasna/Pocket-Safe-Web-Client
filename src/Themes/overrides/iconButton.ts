@@ -1,6 +1,6 @@
 import { Theme } from "@mui/material";
 
-export default function IconButton(theme:Theme) {
+export default function iconButton(theme:Theme) {
   return {
     root: {
       borderRadius: 4

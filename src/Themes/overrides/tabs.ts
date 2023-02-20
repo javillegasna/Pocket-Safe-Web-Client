@@ -1,4 +1,4 @@
-export default function Tabs() {
+export default function tabs() {
   return {
     vertical: {
       overflow: 'visible'

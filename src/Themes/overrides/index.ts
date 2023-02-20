@@ -3,41 +3,43 @@ import { merge } from 'lodash';
 
 import { OverrideTheme } from './overrideTheme';
 
-import Badge from './badge';
-import Button from './button';
-import CardContent from './cardContent';
-import Chip from './chip';
-import IconButton from './iconButton';
-import InputLabel from './inputLabel';
-import LinearProgress from './linearProgress';
-import ListItemIcon from './listItemIcon';
-import OutlinedInput from './outlineInput';
-import Tab from './tab';
-import TableCell from './tableCell';
-import Tabs from './tabs';
-import Typography from './typography';
+import badge from './badge';
+import button from './button';
+import cardContent from './cardContent';
+import chip from './chip';
+import iconButton from './iconButton';
+import inputLabel from './inputLabel';
+import linearProgress from './linearProgress';
+import listItemIcon from './listItemIcon';
+import outlinedInput from './outlineInput';
+import tab from './tab';
+import tableCell from './tableCell';
+import tabs from './tabs';
+import typography from './typography';
+import appBar from './appbar';
 
 export default function ComponentsOverrides(theme: Theme) {
   return merge(
     OverrideTheme({
-      elementKey: 'MuiLink',
+      elementKey: 'Link',
       defaultProps:{underline: 'hover'}
-    })({}),
+    })(),
     OverrideTheme({
-      elementKey: 'MuiButton',
+      elementKey: 'Button',
       defaultProps: { disableElevation: true }
-    })(Button(theme)),
-    OverrideTheme({ elementKey: 'MuiBadge' })(Badge(theme)),
-    OverrideTheme({ elementKey: 'MuiCardContent' })(CardContent()),
-    OverrideTheme({ elementKey: 'MuiChip' })(Chip(theme)),
-    OverrideTheme({ elementKey: 'MuiIconButton' })(IconButton(theme)),
-    OverrideTheme({ elementKey: 'MuiInputLabel' })(InputLabel(theme)),
-    OverrideTheme({ elementKey: 'MuiLinearProgress' })(LinearProgress()),
-    OverrideTheme({ elementKey: 'MuiListItemIcon' })(ListItemIcon()),
-    OverrideTheme({ elementKey: 'MuiOutlinedInput' })(OutlinedInput(theme)),
-    OverrideTheme({ elementKey: 'MuiTab' })(Tab(theme)),
-    OverrideTheme({ elementKey: 'MuiTableCell' })(TableCell(theme)),
-    OverrideTheme({ elementKey: 'MuiTabs' })(Tabs()),
-    OverrideTheme({ elementKey: 'MuiTypography' })(Typography()),
+    })(button(theme)),
+    OverrideTheme({ elementKey: 'Badge' })(badge(theme)),
+    OverrideTheme({ elementKey: 'CardContent' })(cardContent()),
+    OverrideTheme({ elementKey: 'Chip' })(chip(theme)),
+    OverrideTheme({ elementKey: 'IconButton' })(iconButton(theme)),
+    OverrideTheme({ elementKey: 'InputLabel' })(inputLabel(theme)),
+    OverrideTheme({ elementKey: 'LinearProgress' })(linearProgress()),
+    OverrideTheme({ elementKey: 'ListItemIcon' })(listItemIcon()),
+    OverrideTheme({ elementKey: 'OutlinedInput' })(outlinedInput(theme)),
+    OverrideTheme({ elementKey: 'Tab' })(tab(theme)),
+    OverrideTheme({ elementKey: 'TableCell' })(tableCell(theme)),
+    OverrideTheme({ elementKey: 'Tabs' })(tabs()),
+    OverrideTheme({ elementKey: 'Typography' })(typography()),
+    OverrideTheme({ elementKey: 'AppBar' })(appBar(theme)),
   );
 }

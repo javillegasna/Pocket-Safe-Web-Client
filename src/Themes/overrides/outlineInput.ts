@@ -1,6 +1,6 @@
 import { alpha, Theme } from '@mui/material';
 
-export default function OutlinedInput(theme: Theme) {
+export default function outlinedInput(theme: Theme) {
   return {
     input: {
       padding: '10.5px 14px 10.5px 12px'

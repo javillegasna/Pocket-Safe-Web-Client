@@ -1,6 +1,6 @@
 import { Theme } from '@mui/material';
 
-export default function Badge(theme: Theme) {
+export default function badge(theme: Theme) {
   return {
     standard: {
       minWidth: theme.spacing(2),

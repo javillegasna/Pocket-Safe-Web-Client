@@ -1,4 +1,4 @@
-export default function CardContent() {
+export default function cardContent() {
   return {
     root: {
       padding: 20,

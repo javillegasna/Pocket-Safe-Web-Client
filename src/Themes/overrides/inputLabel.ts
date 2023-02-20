@@ -1,6 +1,6 @@
 import { Theme } from "@mui/material";
 
-export default function InputLabel(theme :Theme) {
+export default function inputLabel(theme :Theme) {
   return {
     root: {
       color: theme.palette.grey[600]

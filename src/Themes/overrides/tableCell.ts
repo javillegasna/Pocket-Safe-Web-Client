@@ -1,6 +1,6 @@
 import { Theme } from '@mui/material';
 
-export default function TableCell(theme: Theme) {
+export default function tableCell(theme: Theme) {
   return {
     root: {
       fontSize: '0.875rem',
