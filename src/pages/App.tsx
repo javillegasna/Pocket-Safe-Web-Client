@@ -1,33 +1,25 @@
-import { useState } from 'react';
-import reactLogo from '../assets/react.svg';
-import './App.css';
+import { Button, PaletteMode } from '@mui/material';
+import React, { useState } from 'react';
+import Layout from '../layout/Layout';
+import ThemeCustomization from '../Themes';
 
 function App(): JSX.Element {
-  const [count, setCount] = useState(0);
-  const handleOnClick = (): void => {
-    setCount(count + 1);
-  };
+  const [themeMode, setThemeMode] = useState<PaletteMode>('light')
+    const colorMode = React.useMemo(
+      () => ({
+        toggleColorMode: () => {
+          setThemeMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+        },
+        currentColorMode: themeMode
+      }),
+      [themeMode],
+    );
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={handleOnClick} type="button">
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </div>
+    <ThemeCustomization themeMode={themeMode}>
+      <Layout colorMode={colorMode}>
+        <h1>Body</h1>
+      </Layout>
+    </ThemeCustomization>
   );
 }
 

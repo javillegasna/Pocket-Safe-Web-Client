@@ -14,16 +14,21 @@
     "cypress:open": "cypress open"
   },
   "dependencies": {
-    "@mui/material": "^5.11.7",
-    "@mui/styled-engine-sc": "^5.11.0",
+    "@ant-design/colors": "^7.0.0",
+    "@babel/core": ">=7.0.0 <8.0.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.9",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
     "react-is": "^18.2.0",
-    "react-router-dom": "^6.8.1",
-    "styled-components": "^5.3.6"
+    "react-router-dom": "^6.8.1"
   },
   "devDependencies": {
     "@testing-library/react": "^13.4.0",
+    "@types/lodash": "^4.14.191",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
