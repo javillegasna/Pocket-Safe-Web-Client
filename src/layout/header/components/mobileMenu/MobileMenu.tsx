@@ -1,9 +1,9 @@
-import { OptionsGeneric } from '@popperjs/core'
 import { ClickAwayListener, IconButton, Paper, Popper } from '@mui/material';
 import { FiMoreVertical } from 'react-icons/fi';
 import { useRef, useState } from 'react';
 import Search from '../search/Search';
 import Transitions, { TransitionsType } from '../../../../components/@extended/Transitions';
+import Profile from '../profile/Profile';
 const MobileSection = () => {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLAnchorElement | null>(null);
@@ -37,7 +37,7 @@ const MobileSection = () => {
       <FiMoreVertical />
     </IconButton>
   );
-  const popperOptions:Partial<OptionsGeneric<any>> = {
+  const popperOptions= {
     modifiers: [
       {
         name: 'offset',
@@ -46,7 +46,7 @@ const MobileSection = () => {
         }
       }
     ]
-  }
+  };
   return (
     <>
       {moreButton}
@@ -56,15 +56,23 @@ const MobileSection = () => {
         placement="bottom-end"
         open={open}
         role={undefined}
-        sx={{ width: '100%' }}
         anchorEl={anchorRef.current}
         popperOptions={popperOptions}
       >
         {({ TransitionProps }) => (
           <Transitions type={TransitionsType.fade} in={open} {...TransitionProps}>
             <ClickAwayListener onClickAway={handleClose}>
-              <Paper sx={{p:1 }}>
+              <Paper
+                sx={{
+                  p: 1,
+                  width: '100vw',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center'
+                }}
+              >
                 <Search />
+                <Profile />
               </Paper>
             </ClickAwayListener>
           </Transitions>

@@ -1,46 +1,55 @@
-import { Theme } from '@emotion/react';
-import { AppBar, Box, IconButton, Link, PaletteMode, Toolbar } from '@mui/material';
+import { AppBar, IconButton, Link, PaletteMode, Toolbar, Theme } from '@mui/material';
 import { SxProps } from '@mui/material/styles';
-import { AiOutlineMenuUnfold, AiOutlineMenuFold,AiFillGithub } from 'react-icons/ai';
+import { AiOutlineMenuUnfold, AiOutlineMenuFold, AiFillGithub } from 'react-icons/ai';
 import { BsFillSunFill, BsFillMoonStarsFill } from 'react-icons/bs';
 import MobileSection from './components/mobileMenu/MobileMenu';
+import Profile from './components/profile/Profile';
 import Search from './components/search/Search';
-interface IHeaderProps {
-  isSideBarOpen: boolean;
-  setIsSideBarOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  colorMode: {
-    toggleColorMode: () => void;
-    currentColorMode: PaletteMode;
-  };
-  breakpoints: {
-    matchesXs: boolean;
-    matchDownMD: boolean;
-  };
-}
+import { IHeaderProps } from './Header.interfaces';
+import { AppBarStyled } from './Header.styles';
 
-const Header = ({ isSideBarOpen, colorMode, breakpoints }: IHeaderProps) => {
-  const {matchesXs} = breakpoints
-  const sxIconButton: SxProps<Theme> = {
-    color: 'text.primary',
-    bgcolor: 'grey.100',
-    ml: { xs: 0, lg: -2 }
-  };
-  return (
-    <AppBar elevation={0}>
-      <Toolbar>
+const sxMenuButton: SxProps<Theme> = {
+  color: 'text.primary',
+  bgcolor: 'grey.100',
+  mx: 1
+};
+const sxNormalButton: SxProps<Theme> = {
+  ml: 1,
+  color: 'text.primary',
+  bgcolor: 'grey.100',
+  '&:hover': { bgcolor: 'grey.300', color: 'black' }
+};
+
+const sxAppBar: SxProps<Theme> = {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  p: 0.5
+};
+
+const Header = ({ layoutState, colorState, breakpoints }: IHeaderProps) => {
+  const { matchDownLG, matchDownMD } = breakpoints;
+  const { isSideBarOpen, handlerSideBar } = layoutState;
+
+  const headerContent = (
+    <>
+      <div>
         <IconButton
           disableRipple
           aria-label="open drawer"
           edge="start"
           color="secondary"
-          sx={sxIconButton}
+          sx={sxMenuButton}
+          onClick={handlerSideBar}
         >
           {isSideBarOpen ? <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}
         </IconButton>
-        {!matchesXs && <Search />}
-        {matchesXs && <Box sx={{ width: '100%', ml: 1 }} />}
-        <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
-          {colorMode.currentColorMode === 'dark' ? <BsFillMoonStarsFill /> : <BsFillSunFill />}
+        {!matchDownMD && <Search />}
+      </div>
+      <Toolbar>
+        <IconButton onClick={colorState.toggleColorMode} sx={sxNormalButton}>
+          {colorState.currentColorMode === 'dark' ? <BsFillMoonStarsFill /> : <BsFillSunFill />}
         </IconButton>
         <IconButton
           component={Link}
@@ -49,13 +58,27 @@ const Header = ({ isSideBarOpen, colorMode, breakpoints }: IHeaderProps) => {
           disableRipple
           color="secondary"
           title="Download Free Version"
-          sx={{ color: 'text.primary', bgcolor: 'grey.100' }}
+          sx={sxNormalButton}
         >
           <AiFillGithub />
         </IconButton>
-        {matchesXs && <MobileSection />}
+        {matchDownMD && <MobileSection />}
+        {!matchDownMD && <Profile />}
       </Toolbar>
-    </AppBar>
+    </>
+  );
+  return (
+    <>
+      {matchDownLG ? (
+        <AppBar sx={sxAppBar} elevation={0}>
+          {headerContent}
+        </AppBar>
+      ) : (
+        <AppBarStyled sx={sxAppBar} elevation={0} open={isSideBarOpen} theme={colorState.theme}>
+          {headerContent}
+        </AppBarStyled>
+      )}
+    </>
   );
 };
 

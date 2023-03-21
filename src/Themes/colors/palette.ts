@@ -28,8 +28,8 @@ export const Palette = (mode:PaletteMode): PaletteOptions => {
     },
     divider: colorPalette.grey[200],
     background: {
-      paper: colorPalette.grey[0],
-      default: colorPalette.grey.A50
+      paper: mode === 'light'? colorPalette.grey[0]: colorPalette.grey[900],
+      default: mode === 'light'? colorPalette.grey.A50: colorPalette.grey[700],
     }
   };
 };

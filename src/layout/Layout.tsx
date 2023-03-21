@@ -1,27 +1,43 @@
-import { Box, PaletteMode, useMediaQuery, Theme } from '@mui/material';
-import React, { useState } from 'react';
+import { useTheme } from '@mui/material';
+import { Box, useMediaQuery, Theme } from '@mui/material';
+import { useState } from 'react';
 import Header from './header/Header';
-interface ILayout {
-  children: React.ReactNode;
-  colorMode: {
-    toggleColorMode: () => void;
-    currentColorMode: PaletteMode
-  };
-}
+import { ILayout } from './Layout.interfaces';
+import Sidebar from './sidebar/Sidebar';
+
 function Layout(props: ILayout) {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
-  const matchesXs = useMediaQuery((theme:Theme) => theme.breakpoints.down('md'));
-  const matchDownMD = useMediaQuery((theme:Theme)=>theme.breakpoints.down('lg'));
+  const theme = useTheme()
+  const matchDownMD = useMediaQuery((theme:Theme) => theme.breakpoints.down('md'));
+  const matchDownLG = useMediaQuery((theme:Theme)=>theme.breakpoints.down('lg'));
+
+  const handlerSideBar = ()=>{
+    setIsSideBarOpen((prev)=>!prev)
+  }
+
+
+  const colorState = {
+    theme,
+    ...props.colorMode
+  }
   const breakpoints = {
-    matchesXs,
-    matchDownMD
+    matchDownMD,
+    matchDownLG,
+  }
+  const layoutState = {
+    isSideBarOpen,
+    handlerSideBar,
   }
   return (
     <Box sx={{ display: 'flex', width: '100%' }}>
       <Header
-        isSideBarOpen={isSideBarOpen}
-        setIsSideBarOpen={setIsSideBarOpen}
-        colorMode={props.colorMode}
+        layoutState={layoutState}
+        colorState={colorState}
+        breakpoints={breakpoints}
+      />
+      <Sidebar
+        layoutState={layoutState}
+        colorState={colorState}
         breakpoints={breakpoints}
       />
       {props.children}
