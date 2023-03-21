@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import Profile from './Profile';
 
-describe('App unit test', () => {
+describe('Profile Component', () => {
   beforeEach(() => {
-    render(<App />);
+    render(<Profile />);
   });
-  test('Should render the app', () => {
+  test('Should render a button whit text', () => {
     expect(screen.getByText(/John Doe/)).toBeDefined();
   });
 });
