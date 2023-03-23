@@ -19,6 +19,7 @@ const closedMixin = (theme: Theme) => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen
   }),
+  width: 0,
   borderRight: 'none'
 });
 

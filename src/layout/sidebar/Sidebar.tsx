@@ -19,7 +19,7 @@ const Sidebar = ({ breakpoints, colorState, layoutState }: ISideBarProps) => {
   return (
     <Box component="nav" sx={{ flexShrink: { md: 0 }, zIndex: 2 }} aria-label="mailbox folders">
       {!breakpoints.matchDownLG ? (
-        <DrawerStyled theme={colorState.theme} open={layoutState.isSideBarOpen}>
+        <DrawerStyled variant="persistent" theme={colorState.theme} open={layoutState.isSideBarOpen}>
           <IconButton
             sx={{
               display: 'flex',

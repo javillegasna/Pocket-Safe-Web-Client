@@ -1,4 +1,4 @@
-import { createTheme, PaletteMode } from '@mui/material';
+import { createTheme } from '@mui/material';
 import { fireEvent, render, screen } from '@testing-library/react';
 import Header from './Header';
 import { IHeaderProps } from './Header.interfaces';
