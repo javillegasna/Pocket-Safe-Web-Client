@@ -7,40 +7,33 @@ import Sidebar from './sidebar/Sidebar';
 
 function Layout(props: ILayout) {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
-  const theme = useTheme()
-  const matchDownMD = useMediaQuery((theme:Theme) => theme.breakpoints.down('md'));
-  const matchDownLG = useMediaQuery((theme:Theme)=>theme.breakpoints.down('lg'));
+  const theme = useTheme();
+  const matchDownMD = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+  const matchDownLG = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'));
 
-  const handlerSideBar = ()=>{
-    setIsSideBarOpen((prev)=>!prev)
-  }
-
+  const handlerSideBar = () => {
+    setIsSideBarOpen((prev) => !prev);
+  };
 
   const colorState = {
     theme,
     ...props.colorMode
-  }
+  };
   const breakpoints = {
     matchDownMD,
-    matchDownLG,
-  }
+    matchDownLG
+  };
   const layoutState = {
     isSideBarOpen,
-    handlerSideBar,
-  }
+    handlerSideBar
+  };
   return (
     <Box sx={{ display: 'flex', width: '100%' }}>
-      <Header
-        layoutState={layoutState}
-        colorState={colorState}
-        breakpoints={breakpoints}
-      />
-      <Sidebar
-        layoutState={layoutState}
-        colorState={colorState}
-        breakpoints={breakpoints}
-      />
-      {props.children}
+      <Header layoutState={layoutState} colorState={colorState} breakpoints={breakpoints} />
+      <Sidebar layoutState={layoutState} colorState={colorState} breakpoints={breakpoints} />
+      <Box component="main" sx={{ width: '100%', flexGrow: 1, p: { xs: 2, sm: 3 }, mt:8 }}>
+        {props.children}
+      </Box>
     </Box>
   );
 }

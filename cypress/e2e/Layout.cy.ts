@@ -8,22 +8,22 @@ describe('Home should be render desktop layout layout', () => {
     cy.get('.MuiInputBase-root').should('be.visible');
   });
   it('When Menu button was preset the sidebar should be visible', () => {
-    cy.get(':nth-child(1) > .MuiButtonBase-root')
+    cy.get('.MoreButton')
       .click()
       .then(() => {
         cy.get('.MuiDrawer-root > .MuiPaper-root').should('be.visible');
       });
   });
   it('When Menu button was preset two times the sidebar should not be visible', () => {
-    cy.get(':nth-child(1) > .MuiButtonBase-root')
+    cy.get('.MoreButton')
       .click()
       .then(() => {
         cy.get('.MuiDrawer-root > .MuiPaper-root').should('be.visible');
       });
-    cy.get(':nth-child(1) > .MuiButtonBase-root')
+    cy.get('.MoreButton')
       .click()
       .then(() => {
-        cy.get('.MuiDrawer-root > .MuiPaper-root').should('not.exist');
+        cy.get('.MuiDrawer-root > .MuiPaper-root').should('not.be.visible');
       });
   });
 });
@@ -52,6 +52,15 @@ describe('Home should be render mobile layout', () => {
       .click()
       .then(() => {
         cy.get('.MuiDrawer-root > .MuiPaper-root').should('be.visible');
+      });
+  });
+  it('When Menu button was preset the sidebar should be visible', () => {
+    cy.get('.MoreButton')
+      .click()
+    cy.get('.MoreButton')
+      .click({force: true})
+      .then(() => {
+        cy.get('.MuiDrawer-root > .MuiPaper-root').should('not.be.visible');
       });
   });
 });

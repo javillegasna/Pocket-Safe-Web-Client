@@ -2,6 +2,7 @@ import { Button, PaletteMode } from '@mui/material';
 import React, { useState } from 'react';
 import Layout from '../layout/Layout';
 import ThemeCustomization from '../Themes';
+import Home from './home/Home';
 
 function App(): JSX.Element {
   const [themeMode, setThemeMode] = useState<PaletteMode>('light')
@@ -17,7 +18,7 @@ function App(): JSX.Element {
   return (
     <ThemeCustomization themeMode={themeMode}>
       <Layout colorMode={colorMode}>
-        <h1>Body</h1>
+        <Home/>
       </Layout>
     </ThemeCustomization>
   );

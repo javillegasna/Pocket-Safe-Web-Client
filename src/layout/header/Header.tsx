@@ -37,6 +37,7 @@ const Header = ({ layoutState, colorState, breakpoints }: IHeaderProps) => {
       <div>
         <IconButton
           disableRipple
+          className='MoreButton'
           aria-label="open drawer"
           edge="start"
           color="secondary"
