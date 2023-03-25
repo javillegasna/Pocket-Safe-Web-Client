@@ -11,6 +11,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      CLIENT_URL: ${{ secrets.CLIENT_URL }}
+      VITE_GRAPHQL_API_URL: ${{ secrets.GRAPHQL_API_URL }}
+
     strategy:
       matrix:
         browser-type: [chrome, firefox, edge]
@@ -35,6 +39,10 @@ jobs:
 
     - name: Run e2e test Cypress
       uses: cypress-io/github-action@v5.0.8
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        CYPRESS_CLIENT_URL: ${{ env.CLIENT_URL }}
+        CYPRESS_GRAPHQL_API_URL: ${{ env.VITE_GRAPHQL_API_URL }}
       with:
         install: false
         build: npm run build

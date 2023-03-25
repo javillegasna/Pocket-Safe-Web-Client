@@ -12,7 +12,9 @@ coverage
 dist
 dist-ssr
 *.local
-
+#env
+.env
+cypress.env.json
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
